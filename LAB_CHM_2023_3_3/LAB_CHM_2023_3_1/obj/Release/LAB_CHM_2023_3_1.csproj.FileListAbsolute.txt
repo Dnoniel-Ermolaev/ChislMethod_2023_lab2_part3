@@ -1,0 +1,11 @@
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\bin\Release\LAB_CHM_2023_3_1.exe
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\bin\Release\LAB_CHM_2023_3_1.pdb
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.csproj.AssemblyReference.cache
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form1.resources
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form2.resources
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form3.resources
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Properties.Resources.resources
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.csproj.GenerateResource.cache
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.csproj.CoreCompileInputs.cache
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.exe
+C:\Users\ermol\source\repos\LAB_CHM_2023_3_1\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.pdb
