@@ -69,6 +69,7 @@ namespace LAB_CHM_2023_3_1
         //РАБОТАЕТ ВЕРНО, КАК ПО ПРОГЕ КАПКАЕВА
         //Вынес массивы для передачу в отрисовку
         double[][] v1;
+        double[][] v1prev;
         double[][] u;
         double[][] v2;
         double[][] v2_2;
@@ -194,11 +195,15 @@ namespace LAB_CHM_2023_3_1
                 T[i] = 2 / (Max + Min + (Max - Min) * Math.Cos(Math.PI * (2 * Sup[i] + 1) / (2.0 * K)));
             }
             //ПОДГОТОВКА ПАРАМЕТРОВ ТАУ ДЛЯ ЧЕБЫШЕВА ЗАКОНЧЕНА
+            double[][] vclone;
+            vclone = new double[n + 1][];
+            vclone = v1.Clone() as double[][];
 
             int index = 0;
             while (true)
             {
-                if (index < K - 1) //ВИДИМО ТАК
+                Eps_max = 0.0;
+                for (index =0; index < K-1;index++) //ВИДИМО ТАК
                 {
                     // невязка для тау
 
@@ -212,7 +217,6 @@ namespace LAB_CHM_2023_3_1
                         }
                     }
 
-                    Eps_max = 0.0;
                     for (int j = 1; j < m; j++)
                     {
                         for (int i = 1; i < n; i++)
@@ -225,55 +229,39 @@ namespace LAB_CHM_2023_3_1
                             v1[i][j] = temp;
                         }
                     }
-
-
-                    index++;
                 }
-                else
+
+                for (int j = 1; j < m; j++)
                 {
-                    // невязка для тау
-
-                    for (int j = 1; j < m; j++)
+                    for (int i = 1; i < n; i++)
                     {
-                        for (int i = 1; i < n; i++)
-                        {
-                            R[i][j] = A * v1[i][j] + h2 * (v1[i - 1][j] + v1[i + 1][j]) + k2 * (v1[i][j - 1] + v1[i][j + 1]) - f1(x[i], y[j]);
-                            //if (Math.Abs(temp) >= maxR1) maxR1 = Math.Abs(temp);
-                            //maxR1 += temp * temp;
-                        }
+                        prev = vclone[i][j];
+                        temp = v1[i][j]; // вот тут метод простой итерации
+                        currentEps = Math.Abs(prev - temp);
+                        if (currentEps > Eps_max) { Eps_max = currentEps; };
+                        v1[i][j] = temp;
                     }
-
-                    Eps_max = 0.0;
-                    for (int j = 1; j < m; j++)
-                    {
-                        for (int i = 1; i < n; i++)
-                        {
-                            prev = v1[i][j];
-                            temp = prev - T[index] * R[i][j]; // вот тут метод простой итерации
-
-                            currentEps = Math.Abs(prev - temp);
-                            if (currentEps > Eps_max) { Eps_max = currentEps; };
-                            v1[i][j] = temp;
-                        }
-                    }
-                    index = 0;
                 }
-                p++;
+                vclone = v1.Clone() as double[][];
+                p+=index+1;//p++;
                 if ((Eps_max < Eps) || (p > N_max))
                     break;
             }
 
-            temp = 0;
+            double temp2 = 0.0;
+
             for (int j = 1; j < m; j++)
             {
                 for (int i = 1; i < n; i++)
                 {
-                    temp = A * v1[i][j] + h2 * (v1[i - 1][j] + v1[i + 1][j]) + k2 * (v1[i][j - 1] + v1[i][j + 1]) - f1(x[i], y[j]);
-                    if (Math.Abs(temp) >= maxR1) maxR1 = Math.Abs(temp);
-                    //maxR1 += temp * temp;
+                    temp2 = A * v1[i][j] + h2 * (v1[i - 1][j] + v1[i + 1][j]) + k2 * (v1[i][j - 1] + v1[i][j + 1]) - f1(x[i], y[j]); //было -
+
+                    //if (Math.Abs(temp2) >= maxR1) maxR1 = Math.Abs(temp2);
+                    maxR1 += temp2* temp2;
                 }
             }
-            //maxR1 = Math.Sqrt(maxR1);
+
+            maxR1 = Math.Sqrt(maxR1);
 
             // table
 
@@ -502,9 +490,14 @@ namespace LAB_CHM_2023_3_1
             }
             //ПОДГОТОВКА ПАРАМЕТРОВ ТАУ ДЛЯ ЧЕБЫШЕВА ЗАКОНЧЕНА
             int index = 0;
+            double[][] v2clone;
+            v2clone = new double[n + 1][];
+            v2clone = v2.Clone() as double[][];
+
             while (true)
             {
-                if (index < K - 1) //ВИДИМО ТАК
+                Eps_max = 0.0;
+                for (index = 0; index < K - 1; index++) //ВИДИМО ТАК
                 {
                     // невязка для тау
 
@@ -518,7 +511,6 @@ namespace LAB_CHM_2023_3_1
                         }
                     }
 
-                    Eps_max = 0.0;
                     for (int j = 1; j < m; j++)
                     {
                         for (int i = 1; i < n; i++)
@@ -531,53 +523,34 @@ namespace LAB_CHM_2023_3_1
                             v2[i][j] = temp;
                         }
                     }
-
-
-                    index++;
                 }
-                else
+
+                for (int j = 1; j < m; j++)
                 {
-                    // невязка для тау
-
-                    for (int j = 1; j < m; j++)
+                    for (int i = 1; i < n; i++)
                     {
-                        for (int i = 1; i < n; i++)
-                        {
-                            R1[i][j] = A * v2[i][j] + h2 * (v2[i - 1][j] + v2[i + 1][j]) + k2 * (v2[i][j - 1] + v2[i][j + 1]) - f2(x[i], y[j]);
-                            //if (Math.Abs(temp) >= maxR1) maxR1 = Math.Abs(temp);
-                            //maxR1 += temp * temp;
-                        }
+                        prev = v2clone[i][j];
+                        temp = v2[i][j]; // вот тут метод простой итерации
+                        currentEps = Math.Abs(prev - temp);
+                        if (currentEps > Eps_max) { Eps_max = currentEps; };
+                        v2[i][j] = temp;
                     }
-
-                    Eps_max = 0.0;
-                    for (int j = 1; j < m; j++)
-                    {
-                        for (int i = 1; i < n; i++)
-                        {
-                            prev = v2[i][j];
-                            temp = prev - T2[index] * R1[i][j]; // вот тут метод простой итерации
-
-                            currentEps = Math.Abs(prev - temp);
-                            if (currentEps > Eps_max) { Eps_max = currentEps; };
-                            v2[i][j] = temp;
-                        }
-                    }
-                    index = 0;
                 }
-                p++;
+                v2clone = v2.Clone() as double[][];
+                p += index + 1;//p++;
                 if ((Eps_max < Eps) || (p > N_max))
                     break;
             }
 
             // nevyazka na vyhode
-            temp = 0.0;
+            double temp3 = 0.0;
             for (int j = 1; j < m; j++)
             {
                 for (int i = 1; i < n; i++)
                 {
-                    temp = A * v2[i][j] + h2 * (v2[i - 1][j] + v2[i + 1][j]) + k2 * (v2[i][j - 1] + v2[i][j + 1])  - f2(x[i], y[j]);
-                    if (Math.Abs(temp) >= maxR1) maxR1 = Math.Abs(temp);
-                    //maxR1 += temp * temp;
+                    temp3 = A * v2[i][j] + h2 * (v2[i - 1][j] + v2[i + 1][j]) + k2 * (v2[i][j - 1] + v2[i][j + 1])  - f2(x[i], y[j]);
+                    if (Math.Abs(temp3) >= maxR1) maxR1 = Math.Abs(temp3);
+                    //maxR1 += temp3 * temp3;
                 }
             }
             //maxR1 = Math.Sqrt(maxR1);
@@ -624,7 +597,7 @@ namespace LAB_CHM_2023_3_1
                 {
                     f[i][j] = f2(x[i], y[j]);
                     //MaxF2 += f[i][j] * f[i][j];
-                    if (Math.Abs(f[i][j]) > MaxF) MaxF2 = Math.Abs(f[i][j]);
+                    if (Math.Abs(f[i][j]) > MaxF2) MaxF2 = Math.Abs(f[i][j]);
                 }
             }
 
@@ -687,9 +660,14 @@ namespace LAB_CHM_2023_3_1
             //ПОДГОТОВКА ПАРАМЕТРОВ ТАУ ДЛЯ ЧЕБЫШЕВА ЗАКОНЧЕНА
             int index2 = 0;
 
+            double[][] v2_2clone;
+            v2_2clone = new double[n + 1][];
+            v2_2clone = v2_2.Clone() as double[][];
+            Eps = Eps / 4.0;
             while (true)
             {
-                if (index2 < K - 1) //ВИДИМО ТАК
+                Eps_max2 = 0.0;
+                for (index2 = 0; index2 < K - 1; index2++) //ВИДИМО ТАК
                 {
                     // невязка для тау
 
@@ -703,7 +681,6 @@ namespace LAB_CHM_2023_3_1
                         }
                     }
 
-                    Eps_max2 = 0.0;
                     for (int j = 1; j < m; j++)
                     {
                         for (int i = 1; i < n; i++)
@@ -716,53 +693,35 @@ namespace LAB_CHM_2023_3_1
                             v2_2[i][j] = temp;
                         }
                     }
-
-
-                    index2++;
                 }
-                else
+
+                for (int j = 1; j < m; j++)
                 {
-                    // невязка для тау
-
-                    for (int j = 1; j < m; j++)
+                    for (int i = 1; i < n; i++)
                     {
-                        for (int i = 1; i < n; i++)
-                        {
-                            R2[i][j] = A * v2_2[i][j] + h2 * (v2_2[i - 1][j] + v2_2[i + 1][j]) + k2 * (v2_2[i][j - 1] + v2_2[i][j + 1]) - f2(x[i], y[j]);
-                            //if (Math.Abs(temp) >= maxR1) maxR1 = Math.Abs(temp);
-                            //maxR1 += temp * temp;
-                        }
+                        prev = v2_2clone[i][j];
+                        temp = v2_2[i][j]; // вот тут метод простой итерации
+                        currentEps = Math.Abs(prev - temp);
+                        if (currentEps > Eps_max2) { Eps_max2 = currentEps; };
+                        v2_2[i][j] = temp;
                     }
-
-                    Eps_max2 = 0.0;
-                    for (int j = 1; j < m; j++)
-                    {
-                        for (int i = 1; i < n; i++)
-                        {
-                            prev = v2_2[i][j];
-                            temp = prev - T2[index2] * R2[i][j]; // вот тут метод простой итерации
-
-                            currentEps = Math.Abs(prev - temp);
-                            if (currentEps > Eps_max2) { Eps_max2 = currentEps; };
-                            v2_2[i][j] = temp;
-                        }
-                    }
-                    index2 = 0;
                 }
-                p2++;
-                if ((Eps_max2 < Eps) || (p > N_max))
+                v2_2clone = v2_2.Clone() as double[][];
+                p2 += index2 + 1;//p++;
+                if ((Eps_max2 < Eps) || (p2 > N_max))
                     break;
             }
 
+
             // nevyazka na vyhode
-            temp = 0.0;
+            double temp2 = 0.0;
             for (int j = 1; j < m; j++)
             {
                 for (int i = 1; i < n; i++)
                 {
-                    temp = A * v2_2[i][j] + h2 * (v2_2[i - 1][j] + v2_2[i + 1][j]) + k2 * (v2_2[i][j - 1] + v2_2[i][j + 1]) - f2(x[i], y[j]);
-                    if (Math.Abs(temp) >= maxR1) maxR = Math.Abs(temp);
-                    //maxR += temp * temp;
+                    temp2 = A * v2_2[i][j] + h2 * (v2_2[i - 1][j] + v2_2[i + 1][j]) + k2 * (v2_2[i][j - 1] + v2_2[i][j + 1]) - f2(x[i], y[j]);
+                    if (Math.Abs(temp2) >= maxR) maxR = Math.Abs(temp2);
+                    //maxR += temp2 * temp2;
                 }
             }
 

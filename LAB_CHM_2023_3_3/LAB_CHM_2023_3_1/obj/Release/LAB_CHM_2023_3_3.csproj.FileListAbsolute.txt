@@ -1,0 +1,13 @@
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\bin\Release\LAB_CHM_2023_3_1.exe
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\bin\Release\LAB_CHM_2023_3_1.pdb
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form1.resources
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form2.resources
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form3.resources
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form4.resources
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Form5.resources
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.Properties.Resources.resources
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_3.csproj.GenerateResource.cache
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_3.csproj.CoreCompileInputs.cache
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.exe
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_1.pdb
+C:\Users\ermol\Documents\ChislMethod_2023_lab2_part3\LAB_CHM_2023_3_3\LAB_CHM_2023_3_1\obj\Release\LAB_CHM_2023_3_3.csproj.AssemblyReference.cache

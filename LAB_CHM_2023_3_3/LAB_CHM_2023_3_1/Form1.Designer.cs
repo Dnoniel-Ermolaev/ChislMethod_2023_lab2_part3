@@ -1076,7 +1076,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
-            this.Text = "Метод Чебышева с параметром К. Ермолаев Данила. Группа 3. Вариант 3";
+            this.Text = "Метод Чебышева с параметром К. Группа 3. Вариант 3";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
