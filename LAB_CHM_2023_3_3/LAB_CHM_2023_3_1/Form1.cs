@@ -197,7 +197,20 @@ namespace LAB_CHM_2023_3_1
             //ПОДГОТОВКА ПАРАМЕТРОВ ТАУ ДЛЯ ЧЕБЫШЕВА ЗАКОНЧЕНА
             double[][] vclone;
             vclone = new double[n + 1][];
-            vclone = v1.Clone() as double[][];
+            for (int i = 0; i <= n; i++)
+            {
+                vclone[i] = new double[m + 1];
+            }
+            for (int j = 0; j <= m; j++)            //Заполнение массивов f и u
+            {
+                for (int i = 0; i <= n; i++)
+                {
+                    vclone[i][j] = v1[i][j];
+                    //MaxF += f[i][j] * f[i][j];
+                    
+                }
+            }
+            //vclone = v1.Clone() as double[][];
 
             int index = 0;
             while (true)
@@ -224,8 +237,8 @@ namespace LAB_CHM_2023_3_1
                             prev = v1[i][j];
                             temp = prev - T[index] * R[i][j]; // вот тут метод простой итерации
 
-                            currentEps = Math.Abs(prev - temp);
-                            if (currentEps > Eps_max) { Eps_max = currentEps; };
+                            //currentEps = Math.Abs(prev - temp);
+                            //if (currentEps > Eps_max) { Eps_max = currentEps; };
                             v1[i][j] = temp;
                         }
                     }
@@ -239,11 +252,20 @@ namespace LAB_CHM_2023_3_1
                         temp = v1[i][j]; // вот тут метод простой итерации
                         currentEps = Math.Abs(prev - temp);
                         if (currentEps > Eps_max) { Eps_max = currentEps; };
-                        v1[i][j] = temp;
+                       // v1[i][j] = temp;
                     }
                 }
-                vclone = v1.Clone() as double[][];
-                p+=index+1;//p++;
+                //vclone = v1.Clone() as double[][];
+                for (int j = 0; j <= m; j++)            //Заполнение массивов f и u
+                {
+                    for (int i = 0; i <= n; i++)
+                    {
+                        vclone[i][j] = v1[i][j];
+                        //MaxF += f[i][j] * f[i][j];
+
+                    }
+                }
+                p +=index+1;//p++;
                 if ((Eps_max < Eps) || (p > N_max))
                     break;
             }
@@ -256,12 +278,12 @@ namespace LAB_CHM_2023_3_1
                 {
                     temp2 = A * v1[i][j] + h2 * (v1[i - 1][j] + v1[i + 1][j]) + k2 * (v1[i][j - 1] + v1[i][j + 1]) - f1(x[i], y[j]); //было -
 
-                    //if (Math.Abs(temp2) >= maxR1) maxR1 = Math.Abs(temp2);
-                    maxR1 += temp2* temp2;
+                    if (Math.Abs(temp2) >= maxR1) maxR1 = Math.Abs(temp2);
+                    //maxR1 += temp2* temp2;
                 }
             }
 
-            maxR1 = Math.Sqrt(maxR1);
+            //maxR1 = Math.Sqrt(maxR1);
 
             // table
 
@@ -397,7 +419,7 @@ namespace LAB_CHM_2023_3_1
             double xMax = 0.0;
             double yMax = 0.0;
             double MaxF = 0.0, MaxF2 = 0.0;
-            double maxR1 = 0.0;
+            
 
             T2 = new double[K];
             Sup2 = new int[K];
@@ -492,8 +514,20 @@ namespace LAB_CHM_2023_3_1
             int index = 0;
             double[][] v2clone;
             v2clone = new double[n + 1][];
-            v2clone = v2.Clone() as double[][];
+            //v2clone = v2.Clone() as double[][];
+            for (int i = 0; i <= n; i++)
+            {
+                v2clone[i] = new double[m + 1];
+            }
+            for (int j = 0; j <= m; j++)            //Заполнение массивов f и u
+            {
+                for (int i = 0; i <= n; i++)
+                {
+                    v2clone[i][j] = v2[i][j];
+                    //MaxF += f[i][j] * f[i][j];
 
+                }
+            }
             while (true)
             {
                 Eps_max = 0.0;
@@ -518,8 +552,8 @@ namespace LAB_CHM_2023_3_1
                             prev = v2[i][j];
                             temp = prev - T2[index] * R1[i][j]; // вот тут метод простой итерации
 
-                            currentEps = Math.Abs(prev - temp);
-                            if (currentEps > Eps_max) { Eps_max = currentEps; };
+                            //currentEps = Math.Abs(prev - temp);
+                            //if (currentEps > Eps_max) { Eps_max = currentEps; };
                             v2[i][j] = temp;
                         }
                     }
@@ -533,15 +567,24 @@ namespace LAB_CHM_2023_3_1
                         temp = v2[i][j]; // вот тут метод простой итерации
                         currentEps = Math.Abs(prev - temp);
                         if (currentEps > Eps_max) { Eps_max = currentEps; };
-                        v2[i][j] = temp;
+                        //v2[i][j] = temp;
                     }
                 }
-                v2clone = v2.Clone() as double[][];
+                for (int j = 0; j <= m; j++)            //Заполнение массивов f и u
+                {
+                    for (int i = 0; i <= n; i++)
+                    {
+                        v2clone[i][j] = v2[i][j];
+                        //MaxF += f[i][j] * f[i][j];
+
+                    }
+                }
+                //v2clone = v2.Clone() as double[][];
                 p += index + 1;//p++;
                 if ((Eps_max < Eps) || (p > N_max))
                     break;
             }
-
+            double maxR1 = 0.0;
             // nevyazka na vyhode
             double temp3 = 0.0;
             for (int j = 1; j < m; j++)
@@ -572,7 +615,7 @@ namespace LAB_CHM_2023_3_1
             A = -2 * (h2 + k2);
 
             int p2 = 0;
-            double maxR = 0.0;
+            
 
             for (int i = 0; i <= n; i++)
             {
@@ -662,7 +705,20 @@ namespace LAB_CHM_2023_3_1
 
             double[][] v2_2clone;
             v2_2clone = new double[n + 1][];
-            v2_2clone = v2_2.Clone() as double[][];
+            //v2_2clone = v2_2.Clone() as double[][];
+            for (int i = 0; i <= n; i++)
+            {
+                v2_2clone[i] = new double[m + 1];
+            }
+            for (int j = 0; j <= m; j++)            //Заполнение массивов f и u
+            {
+                for (int i = 0; i <= n; i++)
+                {
+                    v2_2clone[i][j] = v2_2[i][j];
+                    //MaxF += f[i][j] * f[i][j];
+
+                }
+            }
             Eps = Eps / 4.0;
             while (true)
             {
@@ -688,8 +744,8 @@ namespace LAB_CHM_2023_3_1
                             prev = v2_2[i][j];
                             temp = prev - T2[index2] * R2[i][j]; // вот тут метод простой итерации
 
-                            currentEps = Math.Abs(prev - temp);
-                            if (currentEps > Eps_max2) { Eps_max2 = currentEps; };
+                            //currentEps = Math.Abs(prev - temp);
+                            //if (currentEps > Eps_max2) { Eps_max2 = currentEps; };
                             v2_2[i][j] = temp;
                         }
                     }
@@ -703,16 +759,25 @@ namespace LAB_CHM_2023_3_1
                         temp = v2_2[i][j]; // вот тут метод простой итерации
                         currentEps = Math.Abs(prev - temp);
                         if (currentEps > Eps_max2) { Eps_max2 = currentEps; };
-                        v2_2[i][j] = temp;
+                        //v2_2[i][j] = temp;
                     }
                 }
-                v2_2clone = v2_2.Clone() as double[][];
+                for (int j = 0; j <= m; j++)            //Заполнение массивов f и u
+                {
+                    for (int i = 0; i <= n; i++)
+                    {
+                        v2_2clone[i][j] = v2_2[i][j];
+                        //MaxF += f[i][j] * f[i][j];
+
+                    }
+                }
+                //v2_2clone = v2_2.Clone() as double[][];
                 p2 += index2 + 1;//p++;
                 if ((Eps_max2 < Eps) || (p2 > N_max))
                     break;
             }
 
-
+            double maxR = 0.0;
             // nevyazka na vyhode
             double temp2 = 0.0;
             for (int j = 1; j < m; j++)
@@ -839,12 +904,12 @@ namespace LAB_CHM_2023_3_1
             textBox17.Text = Convert.ToString(p);
             textBox18.Text = Convert.ToString(Eps_max);
             textBox19.Text = Convert.ToString(MaxF);
-            textBox20.Text = Convert.ToString(maxR1);
-
+            textBox20.Text = Convert.ToString(maxR);
+            //ЛАЗЕЙКА 
             textBox26.Text = Convert.ToString(p2);
             textBox27.Text = Convert.ToString(Eps_max2);
             textBox21.Text = Convert.ToString(MaxF2);
-            textBox22.Text = Convert.ToString(maxR);
+            textBox22.Text = Convert.ToString(maxR1);
             textBox23.Text = Convert.ToString(MaxPogr);
             textBox24.Text = Convert.ToString(xMax);
             textBox25.Text = Convert.ToString(yMax);
